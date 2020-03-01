@@ -29,7 +29,9 @@ public class FindFavouriteFoodGoal extends Goal
     public boolean shouldExecute()
     {
         this.findFavouriteFood();
-        return this.itemEntity != null && this.itemEntity.isAlive() && this.entity.getNavigator().getPathToEntity(this.itemEntity, 0) != null;
+        // return this.itemEntity != null && this.itemEntity.isAlive() && this.entity.getNavigator().getPathToEntity(this.itemEntity, 0) != null;
+        return this.itemEntity != null && this.itemEntity.isAlive() && this.entity.getNavigator().getPathToEntityLiving(this.itemEntity, 0) != null;
+        
     }
 
     @Override
@@ -41,14 +43,16 @@ public class FindFavouriteFoodGoal extends Goal
         if(this.entity.getDistance(this.itemEntity) <= 1.5D && this.itemEntity.isAlive())
         {
             this.itemEntity.remove();
-            this.entity.world.playSound(null, this.itemEntity.getPosX(), this.itemEntity.getPosY(), this.itemEntity.getPosZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.NEUTRAL, 1.0F, 0.75F);
+            // this.entity.world.playSound(null, this.itemEntity.getPosX(), this.itemEntity.getPosY(), this.itemEntity.getPosZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.NEUTRAL, 1.0F, 0.75F);
+            this.entity.world.playSound(null, this.itemEntity.getPosition().getX(), this.itemEntity.getPosition().getY(), this.itemEntity.getPosition().getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.NEUTRAL, 1.0F, 0.75F);
         }
     }
 
     @Override
     public boolean shouldContinueExecuting()
     {
-        return this.itemEntity.isAlive() && this.entity.getNavigator().getPathToEntity(this.itemEntity, 0) != null;
+        // return this.itemEntity.isAlive() && this.entity.getNavigator().getPathToEntity(this.itemEntity, 0) != null;
+        return this.itemEntity.isAlive() && this.entity.getNavigator().getPathToEntityLiving(this.itemEntity, 0) != null;
     }
 
     @Nullable

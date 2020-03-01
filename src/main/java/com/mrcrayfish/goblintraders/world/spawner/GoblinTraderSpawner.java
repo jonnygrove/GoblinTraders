@@ -67,7 +67,9 @@ public class GoblinTraderSpawner
 
     private void tick()
     {
-        if(this.world.getGameRules().getBoolean(GameRules.field_230128_E_))
+    	// Trader gamerule not available in 1.14
+        //if(this.world.getGameRules().getBoolean(GameRules.field_230128_E_))
+    	if(true)
         {
             if(--this.delayBeforeSpawnLogic <= 0)
             {

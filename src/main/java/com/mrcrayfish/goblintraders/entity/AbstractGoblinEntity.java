@@ -105,7 +105,8 @@ public abstract class AbstractGoblinEntity extends CreatureEntity implements INP
             if(this.stunDelay == 0)
             {
                 this.dataManager.set(STUNNED, false);
-                this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), ModSounds.ENTITY_GOBLIN_TRADER_ANNOYED_GRUNT, SoundCategory.NEUTRAL, 1.0F, 0.9F + this.getRNG().nextFloat() * 0.2F);
+                // this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), ModSounds.ENTITY_GOBLIN_TRADER_ANNOYED_GRUNT, SoundCategory.NEUTRAL, 1.0F, 0.9F + this.getRNG().nextFloat() * 0.2F);
+                this.world.playSound(null, this.getPosition(), ModSounds.ENTITY_GOBLIN_TRADER_ANNOYED_GRUNT, SoundCategory.NEUTRAL, 1.0F, 0.9F + this.getRNG().nextFloat() * 0.2F);
             }
         }
         if(!this.world.isRemote)
@@ -132,7 +133,8 @@ public abstract class AbstractGoblinEntity extends CreatureEntity implements INP
         {
             if(this.rand.nextInt(5) == 0)
             {
-                this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), ModSounds.ENTITY_GOBLIN_TRADER_ANNOYED_GRUNT, SoundCategory.NEUTRAL, 1.0F, 0.9F + this.getRNG().nextFloat() * 0.2F);
+                // this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), ModSounds.ENTITY_GOBLIN_TRADER_ANNOYED_GRUNT, SoundCategory.NEUTRAL, 1.0F, 0.9F + this.getRNG().nextFloat() * 0.2F);
+                this.world.playSound(null, this.getPosition(), ModSounds.ENTITY_GOBLIN_TRADER_ANNOYED_GRUNT, SoundCategory.NEUTRAL, 1.0F, 0.9F + this.getRNG().nextFloat() * 0.2F);
                 this.customer.attackEntityFrom(DamageSource.causeMobDamage(this), 0.5F);
                 this.swingArm(Hand.MAIN_HAND);
             }
@@ -183,7 +185,6 @@ public abstract class AbstractGoblinEntity extends CreatureEntity implements INP
         }
     }
 
-    @Override
     public void setClientSideOffers(@Nullable MerchantOffers offers)
     {
 
@@ -192,7 +193,8 @@ public abstract class AbstractGoblinEntity extends CreatureEntity implements INP
     @Override
     public void onTrade(MerchantOffer offer)
     {
-        offer.increaseUses();
+        //offer.increaseUses();
+    	offer.func_222219_j();
         if(this.customer != null)
         {
             this.tradedCustomers.add(this.customer.getUniqueID());
@@ -217,7 +219,6 @@ public abstract class AbstractGoblinEntity extends CreatureEntity implements INP
         return 0;
     }
 
-    @Override
     public void setXP(int xpIn)
     {
 
@@ -229,7 +230,6 @@ public abstract class AbstractGoblinEntity extends CreatureEntity implements INP
         return false;
     }
 
-    @Override
     public SoundEvent getYesSound()
     {
         return SoundEvents.ENTITY_VILLAGER_YES;
@@ -259,7 +259,8 @@ public abstract class AbstractGoblinEntity extends CreatureEntity implements INP
             else if(!this.world.isRemote && (this.getRevengeTarget() == null || this.getRevengeTarget() != player))
             {
                 this.setCustomer(player);
-                this.openMerchantContainer(player, this.getDisplayName(), 1);
+                // this.openMerchantContainer(player, this.getDisplayName(), 1);
+                this.func_213707_a(player, this.getDisplayName(), 1);
             }
             return true;
         }
@@ -320,7 +321,8 @@ public abstract class AbstractGoblinEntity extends CreatureEntity implements INP
         MerchantOffers merchantoffers = this.getOffers();
         if(!merchantoffers.isEmpty())
         {
-            compound.put("Offers", merchantoffers.write());
+            // compound.put("Offers", merchantoffers.write());
+        	compound.put("Offers", merchantoffers.func_222199_a());
         }
         compound.putInt("DespawnDelay", this.despawnDelay);
     }

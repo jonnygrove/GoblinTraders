@@ -7,6 +7,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffers;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 /**
@@ -45,11 +46,30 @@ public class VeinGoblinTraderEntity extends AbstractGoblinEntity
         super.livingTick();
         if(this.world.isRemote && this.ticksExisted % 2 == 0)
         {
-            if(this.getPosX() != this.prevPosX || this.getPosY() != this.prevPosY || this.getPosZ() != this.prevPosZ)
+            if(this.getPosition().getX() != this.prevPosX || this.getPosition().getY() != this.prevPosY || this.getPosition().getZ() != this.prevPosZ)
             {
                 //this.world.addParticle(ParticleTypes.FLAME, this.getPosX() - 0.1 + 0.2 * this.rand.nextDouble(), this.getPosY() + 0.25 - 0.1 + 0.2 * this.rand.nextDouble(), this.getPosZ() - 0.1 + 0.2 * this.rand.nextDouble(), 0, 0, 0);
             }
-            this.world.addParticle(ParticleTypes.FLAME, this.getPosX() - 0.5 + 1.0 * this.rand.nextDouble(), this.getPosY() + 0.5 - 0.5 + 1.0 * this.rand.nextDouble(), this.getPosZ() - 0.5 + 1.0 * this.rand.nextDouble(), 0, 0, 0);
+            this.world.addParticle(ParticleTypes.FLAME, this.getPosition().getX() - 0.5 + 1.0 * this.rand.nextDouble(), this.getPosition().getY() + 0.5 - 0.5 + 1.0 * this.rand.nextDouble(), this.getPosition().getZ() - 0.5 + 1.0 * this.rand.nextDouble(), 0, 0, 0);
         }
+        
     }
+
+	@Override
+	public void func_213703_a(MerchantOffers p_213703_1_) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void func_213702_q(int p_213702_1_) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public SoundEvent func_213714_ea() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

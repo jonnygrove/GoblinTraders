@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffers;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 /**
@@ -37,4 +38,22 @@ public class GoblinTraderEntity extends AbstractGoblinEntity
     {
         return new ItemStack(Items.APPLE);
     }
+
+	@Override
+	public void func_213703_a(MerchantOffers p_213703_1_) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void func_213702_q(int p_213702_1_) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public SoundEvent func_213714_ea() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
